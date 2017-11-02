@@ -208,18 +208,18 @@ $('#btn').on('click', function () { // Навешиваем на кнопку с
 
 Урок 5. View
 По-русски его называют «вид» или «представление», и нужны он главным образом для того,
-чтобы отображать в браузере изменения модели(change), коллекций и реагировать на события, вроде click, submit и пр.
+чтобы отображать в браузере изменения(change) модели, коллекций и реагировать на события, вроде click, submit и пр.
 
 Пример
 SearchView = Backbone.View.extend({
-    initialize: function() {
-        alert(‘Initialized!’);
-    }
+	initialize: function() {
+		alert(‘Initialized!’);
+	}
 });
 var searchView = new SearchView();
 
 5.1 Свойство el - ссылка на DOM элемент. Сначала формируется отображение в el а затем он уже вставляется на страницу.
-Все представления должны быть связаны с DOM-элементом, если не определить свойство el то backbone сам создаст новый элемент.
+!!!Все представления должны быть связаны с DOM-элементом, если не определить свойство el то backbone сам создаст новый элемент.
 Управлять созданием элемента можно 3-мя свойствами: tagName, className, id. 
 Если ни один из них не задан - будет создан пустой div.
 
@@ -232,16 +232,16 @@ var searchView = new SearchView({ el: $('#btn') });
 Что бы наше представление появилось в DOM - необходимо реализовать метод render, и вызвать его при создании.
 
 SearchView = Backbone.View.extend({
-    initialize: function() {
-        alert('Initialized!');
-    },
+	initialize: function() {
+		alert('Initialized!');
+	},
 
-    render: function() {
-        var template = _.template($('#search_template').html(), {}); // ищем наш шаблон по айди
-        this.$el.html(template);
+	render: function() {
+		var template = _.template($('#search_template').html(), {}); // ищем наш шаблон по айди
+		this.$el.html(template);
 
-        return this;
-    }
+		return this;
+	}
 });
 
 var searchView = new SearchView({ el: $('#search_container') });
@@ -274,28 +274,25 @@ var searchView = new SearchView({ el: $('#search_container') });
 Урок 6. Коллекции - группа моделей.
 
 var MyModel = Backbone.Model.extend({ // Создаём прототип(класс) модели
-    defaults: {
-        size:10
-    }
+	defaults: {
+		size:10
+	}
 });
 
 var MyCollection = Backbone.Collection.extend({ // Создаём прототип(класс) коллекции
-    model:MyModel
+	model:MyModel
 });
 
 var coll = new MyCollection(); // Создаем экземпляр коллекции (можно уже при создании передать объект)
 
-var car = new MyModel({
-    size:75
+var car = new MyModel({ // Создаем экземпляр модели, которую затем можем добавить в коллекцию.
+	size: 75
 });
-
 // Добавление моделей
-coll.add(car); // Добавляем нашу модель в коллекцию
-coll.add({}); // Если передадим пустой объект - будет использоваться модель по умолчанию
-coll.add([ {size:80}, {color:'white'}, {} ]) //  Мы можем передавать массив с объектами
-
-// Удаление моделей
+coll.add(car); // Добавляем уже созданную модель в коллекцию
+coll.add({}); // Добавляем пустой объект, будет использоваться модель по умолчанию
+coll.add([ {size:80}, {color:'white'}, {} ]) // Добавляем массив объектов в коллекцию.
+// Удаляем модель из коллекции
 coll.remove(car);
-
 // Вывод коллекции
 coll.toJSON();
