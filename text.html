@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Test Backbone</title>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="js/jquery.min.js" ></script>
+		<script src="js/popper.js" ></script>
+		<script src="js/bootstrap.min.js" ></script>
+		
+		<!-- Backbone -->
+		<!-- Underscore first, then Backbone -->
+		<script src="js/underscore.js" ></script>
+		<script src="js/backbone.js" ></script>
+
+		<!-- Main JS -->
+		<script src="js/main.js" ></script>
+
+		<!-- Backbone files -->
+		<script src="js/modelRocket.js" ></script>
+		<script src="js/viewRocket.js" ></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="hero-unit">
+				<h2>My Rocket</h2>
+				<div id="rocket"></div>
+			</div>
+		</div>
+
+		<script>
+			$(function(){
+				var mod = new RocketModel();
+				var view = new RocketView({
+					model: mod,
+					el: '#rocket'
+				});
+			});
+		</script>
+
+		<script type="text/template" id="viewRocket">
+			<h5>Name:
+			<span class="name" contenteditable="true"><%- name %></span></h5>
+			<div class="form-horizontal">
+				<button data-rel="-10" class="changeSize btn btn-small btn-primary">-</button>
+				<input class="size" type="number" value="<%- size %>" style="width: 80px;">
+				<button data-rel="10" class="changeSize btn btn-small btn-success">+</button>
+				Remove:
+				<button class="deleteRow btn btn-small btn-danger"><i class="icon-remove icon-white">X</i></button>
+			</div>
+			<h5>Description:
+			<span class="desc" contenteditable="true"><%- description %></span></h5>
+		</script>
+	</body>
+</html>

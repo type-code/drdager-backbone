@@ -1,0 +1,10 @@
+h5 {
+	margin: 5px 5px !important; 
+}
+.name, .desc {
+	border: 1px solid rgba(0,0,0,0.15);
+	border-radius: 3px;
+	margin: 10px 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
