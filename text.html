@@ -27,49 +27,62 @@
     <script src="js/main.js" ></script>
 
     <!-- Backbone files -->
-    <script src="models/modelRocket.js" ></script>
-    <script src="views/viewRocket.js" ></script>
-    <script src="views/viewRockets.js" ></script>
+    <script src="router.js" ></script>
 </head>
 <body>
-    <!-- Backbone TEMPLATE'S -->
-    <div class="container">
-        <div class="hero-unit span8" id="rockets"></div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Backbone</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#first">First</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#second">Second</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#third">Third</a>
+            </li>
+        </ul>
     </div>
-
-    <!-- Backbone TEMPLATE'S -->
-    <!-- General Table -->
-    <script type="text/template" id="viewRockets">
-        <h2>My Rockets</h2>
-        <button class="btn btn-success addObject">add one</button>
-        <button class="btn btn-info toJSON">to JSON</button>
-        <table class="table table-striped">
-            <thead>
-            <th data-sort="name">Name</th>
-            <th data-sort="size">Size</th>
-            <th data-sort="description">Description</th>
-            <th>Actions</th>
-            </thead>
-            <tbody class="rocketsList"></tbody>
-        </table>
-        <div class="rocketsTotal">
-            Total items: <span class="rockets-count">0</span>
-            Total size: <span class="rockets-size">0</span>
+</nav>
+<!-- Content -->
+<div class="container">
+    <div class="span9 pages">
+        <div id="page-first" class="hero-unit">
+            <h1>1 Hello, router!</h1>
+            <h3>Query: <span class="query"></span></h3>
+            <h3>Category: <span class="category"></span></h3>
+            <p>This is a template for a simple marketing or informational website. It includes
+                a large callout called the hero unit and three supporting pieces of content.
+                Use it as a starting point to create something more unique.</p>
+            <form class="form-inline">
+                <input id="query" type="text" placeholder="query">
+                <select id="category" >
+                    <option>cars</option>
+                    <option>news</option>
+                    <option>rockets</option>
+                </select>
+                <a id="search" href="#" class="btn btn-primary btn-large">search »</a>
+            </form>
         </div>
-        <pre class="json-out"></pre>
-    </script>
-
-    <script type="text/template" id="viewRocket">
-        <td class="name" contenteditable="true"><%= name %></td>
-        <td class="form-horizontal">
-            <button data-rel="-10" class="changeSize btn btn-small btn-primary">-</button>
-            <input class="size" type="number" value="<%- size %>" style="width: 50px;">
-            <button data-rel="10" class="changeSize btn btn-small btn-success">+</button>
-        </td>
-        <td class="desc" contenteditable="true"><%= description %></td>
-        <td>
-            <button class="deleteRow btn btn-small btn-danger"><i class="icon-remove icon-white">X</i></button>
-        </td>
-    </script>
+        <div id="page-second" class="hero-unit hide">
+            <h1>2 Hello, router!</h1>
+            <p>This is a template for a simple marketing or informational website. It includes
+                a large callout called the hero unit and three supporting pieces of content.
+                Use it as a starting point to create something more unique.</p>
+        </div>
+        <div id="page-third" class="hero-unit hide">
+            <h1>3 Hello, router!</h1>
+            <p>This is a template for a simple marketing or informational website. It includes
+                a large callout called the hero unit and three supporting pieces of content.
+                Use it as a starting point to create something more unique.</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

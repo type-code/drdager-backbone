@@ -1,8 +1,13 @@
 // создаем объект
 var app = app || {};
 
+//выполняем код после полной загрузки js-файлов
 $(function () {
-    app.rocketsView = new RocketsView({ // Создаем view
-        el: '#rockets' // Указываем в каком элементе отрисовывать
+    app.router = new Router();
+    $('#search').on('click',function(){
+        var query = $('#query').val();
+        var category = $('#category').val();
+        app.router.navigate("first/"+query+"/"+category, {trigger: true});
+        return false;
     });
 });
