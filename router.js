@@ -15,13 +15,13 @@ var Router = Backbone.Router.extend({
 
     first: function(query,category) { // Описываем функцию
         console.log(query,category);
-        $('.hero-unit').hide();
-        $('#page-first').show();
-        if (query) {
-            $('#page-first').find('.query').text(query);
+        $('.hero-unit').hide(); // Скрываем все отображения
+        $('#page-first').show(); // Показываем текущее
+        if (query) { // Если нам передали параметр
+            $('#page-first').find('.query').text(query); // Находим его и вставляем данные с роутера
         }
-        if (category) {
-            $('#page-first').find('.category').text(category);
+        if (category) { // Если нам передали второй параметр
+            $('#page-first').find('.category').text(category); // Находим его и вставляем данные с роутера
         }
     },
 

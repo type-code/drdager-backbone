@@ -302,3 +302,51 @@ coll.toJSON();
 !!!При инициализации роутера обязательно нужно вызвать
 Backbone.history.start()
 чтобы задать начальное состояние приложения.
+
+Пример:
+
+var Router = Backbone.Router.extend({
+
+    routes: { // ИМ РОУТЕРЕРОВ НЕ МОЖЕТ НАЧИНАТСЯ СО СЛЕША!!!
+        "":                      "first", // Пустая ссылка
+        "first(/)":              "first", // Ссылка с слешом в конце, и без - разные ссылки. Для одного роута нужно / обернуть в ()
+        "first/:query":          "first", // Ссылка + параметп
+        "first/:query/:category":"first", // Ссылка + 2 параметра
+        "second":                "second",
+        "third":                 "third",
+        "file/*path"			 "searchFile" // #file/любой текст, в searchFile будет передано ~ : nested/folder/file.txt
+    },
+
+    initialize: function() {
+        Backbone.history.start(); // Задаем начальное состояние
+    },
+
+    first: function(query,category) { // Описываем функцию, если переданы параметры - они в неё приходят
+        console.log(query,category);
+    }
+
+!Можно в ручную переходить по ссылкам:
+
+ app.router.navigate("first", {trigger: true}); // trigger передаём, что бы сработала одна из функций роутера
+
+!При переходах - Роутер генерирует события, одноименные с именем роута, следовательно это можно отследить.
+Router.on('page:1', function() {
+	console.log('page 1');
+});
+
+Можно добавить роуты в уже созданный экземпляр при помощи метода route:
+router.route(route, name, [callback]) 
+
+!!! Также доступны роуты в виде regexp
+
+initialize: function(options) {
+
+  // совпадает с #page/10, в function будет передано "10"
+  this.route("page/:number", "page", function(number){ ... });
+
+  // совпадает с /117-a/b/c/open, в this.open будет передано "117-a/b/c"
+  this.route(/^(.*?)\/open$/, "open");
+
+},
+
+open: function(id) {}
